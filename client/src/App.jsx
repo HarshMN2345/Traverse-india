@@ -1,4 +1,5 @@
 import { BrowserRouter,Route,Routes } from 'react-router-dom'
+import Jumpbo from './Jumpbo'
 import './App.css'
 import Navbar from './Navbar'
 import Head from './Head'
@@ -7,6 +8,7 @@ const App = () => {
   return (
    <BrowserRouter>
    <Navbar/>
+   <Jumpbo/>
    <Routes>
       <Route path="/" element={<Head/>}/>
       <Route path="/signin" element={<Signin/>}/>
