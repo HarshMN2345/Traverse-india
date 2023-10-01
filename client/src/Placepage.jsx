@@ -28,10 +28,12 @@ export default function Placepage() {
     <form noValidate="" className="space-y-6">
         <div>
             <label htmlFor="name" className="text-sm">Title</label>
+            <div className="text-gray-400">Experience comfort like never before.</div>
             <input id="name" type="text" placeholder="" className="w-full p-3 rounded bg-gray-100" />
         </div>
         <div>
             <label htmlFor="title" className="text-sm">Address</label>
+            <div className="text-gray-400">Experience comfort like never before.</div>
             <input id="address" type="text" className="w-full p-3 rounded bg-gray-100" />
         </div>
         <div>
@@ -48,6 +50,7 @@ export default function Placepage() {
         </div>
         <div>
             <label htmlFor="specialRequests" className="text-sm">Special Requests or Preferences</label>
+            <div className="text-gray-400">Experience comfort like never before.</div>
             <textarea id="specialRequests" rows="3" className="w-full p-3 rounded bg-gray-100"></textarea>
         </div>
 
