@@ -1,6 +1,31 @@
 import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
+import axios from "axios";
+import { UserContext } from "./UserContext";
 
 const Signin = () => {
+  const [email,setEmail] = useState('');
+  const [password,setPassword] = useState('');
+  const [redirect,setRedirect] = useState(false);
+  const {setUser}=useContext(UserContext)
+  async function loginUser(e){
+    e.preventDefault();
+    try{
+      const userinfo =await axios.post('http://localhost:4000/login',{email,password},{withCredentials:true});
+      setUser(userinfo);
+      alert(" Logged In Successfully");
+      setRedirect(true);
+    }catch(err){
+      alert("Email does not exists or some error occured");
+    }}
+    const navigate = useNavigate();
+    if (redirect) {
+      navigate('/');
+      window.location.reload(); // This triggers a page reload
+      return null;  
+    }
   return (
     <div>
          <section className="bg-red-30">
@@ -10,7 +35,7 @@ const Signin = () => {
         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
           Sign in to your account
         </h1>
-        <form className="space-y-4 md:space-y-6" action="#">
+        <form className="space-y-4 md:space-y-6" onSubmit={loginUser}>
           <div>
             <label
               htmlFor="email"
@@ -22,6 +47,8 @@ const Signin = () => {
               type="email"
               name="email"
               id="email"
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
               className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
               placeholder="name@company.com"
               required=""
@@ -38,6 +65,8 @@ const Signin = () => {
               type="password"
               name="password"
               id="password"
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
               placeholder="••••••••"
               className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
               required=""
