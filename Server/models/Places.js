@@ -6,8 +6,8 @@ const placeSchema = new mongoose.Schema({
     image: [String],
     price: Number,
     rating: Number,
-    checkin: Number,
-    checkout: Number,
+    checkin: Date,
+    checkout: Date,
 });
 const Place = mongoose.model('Place', placeSchema);
 module.exports = Place;
